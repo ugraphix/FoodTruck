@@ -31,8 +31,12 @@ body {
     width: 14%;
 }
 
-.toppings {
-    padding-top: 20px;
+div.toppings {
+    padding: 10px 0;
+    width: 50%;
+    margin: 10px auto;
+    background-color: rgba(242, 233, 146, 0.47);
+
 }
 
 .toppings label {

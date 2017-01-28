@@ -1,3 +1,40 @@
 .hide {
     display: none;
 }
+
+.container {
+    background-color: #eeede8;
+
+}
+
+.slogan {
+    font-style: italic;
+    color: #bc8f8f;
+}
+
+body {
+    font-family: "Century Gothic", sans-serif;
+}
+.buttons {
+    padding-bottom: 20px;
+}
+.singleItem, .buttons{
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px;
+}
+.singleItem select {
+    height: 26px;
+}
+.singleItem input[type="number"] {
+    width: 14%;
+}
+
+.toppings {
+    padding-top: 20px;
+}
+
+.toppings label {
+    padding-right: 5px;
+}

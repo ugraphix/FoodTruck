@@ -10,6 +10,7 @@
 .slogan {
     font-style: italic;
     color: #bc8f8f;
+    padding-bottom: 20px;
 }
 
 body {
@@ -19,7 +20,7 @@ body {
     padding-bottom: 20px;
 }
 .singleItem, .buttons{
-    width: 70%;
+    /*width: 70%;*/
     margin: 0 auto;
     text-align: center;
     padding-top: 20px;
@@ -28,12 +29,12 @@ body {
     height: 26px;
 }
 .singleItem input[type="number"] {
-    width: 14%;
+    width: 20%;
 }
 
 div.toppings {
     padding: 10px 0;
-    width: 50%;
+    /*width: 50%;*/
     margin: 10px auto;
     background-color: rgba(242, 233, 146, 0.47);
 
@@ -41,4 +42,29 @@ div.toppings {
 
 .toppings label {
     padding-right: 5px;
+}
+
+.menu {
+    float: left;
+}
+
+.menuItem {
+    padding: 2%;
+    background-color: #e5e5e2;
+    margin-bottom: 10px;
+}
+
+#food {
+    border-left: 1px solid gainsboro;
+}
+
+.foodName {
+    color: #00a1a0;
+    font-size: 1.2em;
+    display: inline;
+}
+
+.price {
+    display: inline;
+    font-size: 1.1em;
 }

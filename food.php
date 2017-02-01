@@ -9,16 +9,16 @@
 class Food
 {
     //class fields
-    public $name = "";
-    public $description = "";
-    public $price = 0;
-    public $quantity = 0;
+    public $name;
+    public $description;
+    public $price;
+    public $quantity;
     public $toppings = array();
     //create class level property TAX
     public static $TAX = 0.9;
 
     //constructor
-    public function __construct($name,$description,$quantity = 0,$price = 0, $toppings = array())
+    public function __construct($name = '',$description = '',$quantity = 0,$price = 0, $toppings = array())
     {
         $this->name = $name;
         $this->description = $description;

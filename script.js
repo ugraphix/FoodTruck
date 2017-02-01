@@ -42,7 +42,7 @@ function toggleRemovalVisibility(){
     }
 }
 function addItem(){
-    $("#template .singleItem").clone().appendTo("#food");
+    $("#template .singleItem").clone().insertBefore(".buttons");
     toggleRemovalVisibility();
 }
 function showTopping(el){

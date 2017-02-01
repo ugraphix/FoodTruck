@@ -42,3 +42,7 @@ div.toppings {
 .toppings label {
     padding-right: 5px;
 }
+
+.menu {
+    float: left;
+}

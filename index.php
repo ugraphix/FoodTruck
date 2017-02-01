@@ -1,4 +1,18 @@
+<?php
+require "food.php";
+//we need to build the form dynamically, from our existing objects
+//instantiate initial objects representing the types of food offered
+$pizza = new Food("Italian Pizza","Delicious taste of Italy,with fresh mozzarella and olive oil", 0,6.99,["Peppers", "Mushrooms", "Tomatoes", "Pesto"]);
+$burrito = new Food("Mexican Burrito","¡Ay, caramba! Straight from burrito heaven to your table", 0,6.50,["Cilantro", "Sour Cream", "Guacamole", "Salsa"]);
+$salad = new Food("Greek Salad","Fresh like a summer breeze over the Mediterranean",0,4.50, ["Olives", "Feta Cheese", "Oregano", "Onions"]);
+$curry = new Food("Indian Curry", "Spicy and rich vegetable curry, simply irresistible",0,7.25,["Hot Peppers", "Coconut Chutney", "Raita"]);
+//create an array of the food objects
+$foodOffer = array("pizza" => $pizza, "burrito" => $burrito, "salad" => $salad, "curry" => $curry);
+//$foodOffer[0] = $pizza;
+//$foodOffer[1] = $burrito;
+//$foodOffer[2] = $salad;
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,39 +33,62 @@
 <h1 class="text-center">FoodTruck</h1>
 <h4 class="text-center slogan">Feeling hungry? We got you covered!</h4>
     <img src="images/foodtruck.jpg" alt="Image of FoodTruck" class="img-responsive center-block img-thumbnail">
+    <div class="menu">
+    <h3>Today's menu</h3>
+    <?php
+    //iterate through the array of food objects and populate the menu with data from the objects
+    foreach ($foodOffer as $food)
+
+        echo '<div class = "menuItem">
+              <h5>' . $food->name . '</h5>
+              <p class="price">' . $food->price . '</p>
+              <p>' . $food->description . '</p>
+              </div>' ;
+
+
+    ?>
+    </div>
 <div id="template" class="hide">
     <div class="singleItem">
         <select class="item" name="items[]">
             <option value="" disabled selected>I want..</option>
-            <option value="pizza">Pizza - $5.25</option>
-            <option value="drink">Drink - $2.55</option>
-            <option value="iceCream">Ice Cream - $3.50</option>
+            <?php
+
+            //create the food select dropdown
+            foreach ($foodOffer as $key => $food)
+                echo '
+              <option value="'.$key . '">' . $food->name . '</option>';
+
+            ?>
+
         </select>
 
         <input type="number" name="quantity[]" min="1" max="10" placeholder="How many?">
         <input type="button" class="removeItem" value="-">
 
-        <div class="hide toppings pizza">
-            <p>Additional Toppings - $1 each</p>
-            <label><input type="checkbox" value="cheese">Cheese</label>
-            <label><input type="checkbox" value="mushrooms">Mushrooms</label>
-            <label><input type="checkbox" value="bacon">Bacon</label>
-            <label><input type="checkbox" value="pesto">Pesto</label>
-        </div>
-        <div class="hide toppings drink">
-            <p>Choose your drink - $2.50 each</p>
-            <label><input type="checkbox" value="pepsi">Pepsi</label>
-            <label><input type="checkbox" value="coke">Coke</label>
-            <label><input type="checkbox" value="coffee">Coffee</label>
-            <label><input type="checkbox" value="tea">Tea</label>
-        </div>
-        <div class="hide toppings iceCream">
-            <p>Additional Flavors - $.50 each</p>
-            <label><input type="checkbox" value="chocolate">Chocolate</label>
-            <label><input type="checkbox" value="walnuts">Walnuts</label>
-            <label><input type="checkbox" value="coconuts">Coconut</label>
-            <label><input type="checkbox" value="strawberries">Strawberries</label>
-        </div>
+
+        <?php
+        //create the additional toppings
+        foreach ($foodOffer as $key => $food) {
+
+
+            $availableToppings = $food->toppings;
+//            echo var_dump($availableToppings);
+            if ($availableToppings) {
+                echo '<div class="hide toppings ' . $key . '">
+                          <p>Additional Toppings - $0.75 each</p>';
+                foreach ($availableToppings as $topping) {
+//                    echo var_dump($topping);
+
+                    echo '
+                       <label><input type="checkbox" value="' . $topping . '">' . $topping . '</label>
+                       
+                       ';
+                }
+                echo '</div>';
+            }
+        }
+        ?>
     </div>
 </div>
 

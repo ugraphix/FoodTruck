@@ -1,6 +1,6 @@
 <?php
 require "food.php";
-//we need to build the form dynamically, from existing objects
+//Building the form dynamically, from an array of objects
 
 //instantiate initial objects representing the types of food offered
 $pizza = new Food("pizza");
@@ -14,10 +14,10 @@ $foodOffer = array($pizza,$burrito,$salad,$curry);
 
 include 'header.php';
 ?>
-<div class="row">
+
 
     <div class="col-sm-6">
-    <h3>Today's menu</h3>
+    <h3>Menu</h3>
     <?php
     //iterate through the array of food objects and populate the menu with data from the objects
     foreach ($foodOffer as $food)
@@ -78,7 +78,7 @@ include 'header.php';
 <form method="post" action="formhandler.php">
     <div id = "food" class="col-sm-6">
         <img src="images/foodtruck.jpg" alt="Image of FoodTruck" class="img-responsive center-block img-thumbnail">
-        <h3>What do you feel like eating today?</h3>
+        <h4 class="text-center">What do you feel like eating today?</h4>
         <div class="form-group buttons">
             <input type="button" id="addItem" value="Add More">
             <input type="submit" value=" Place Order">
@@ -86,8 +86,7 @@ include 'header.php';
     </div>
 
 </form>
-</div>
-<script src="script.js">
-</script>
-</body>
-</html>
+
+<?php
+include 'footer.php';
+

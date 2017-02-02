@@ -28,15 +28,15 @@ class Food
         $this->type = $type;
         $this->quantity = $quantity;
         $this->toppings = $toppings;
-        $this->SetProperties($type);
+        $this->SetProperties();
     }
 
     //methods
     /**
      * @param $type
      */
-    private function SetProperties($type){
-    switch ($type) {
+    private function SetProperties(){
+    switch ($this->type) {
         case "pizza":
             $this->name = "Italian Pizza";
             $this->description ="Delicious taste of Italy,with fresh mozzarella and olive oil";
@@ -69,7 +69,7 @@ class Food
             break;
     }
 }
-    public function CalculateTotal(){
+    public function CalculateSubotal(){
         //@todo implement method
     }
 

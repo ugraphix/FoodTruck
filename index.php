@@ -12,7 +12,7 @@ $curry = new Food("curry");
 /** @var array $foodOffer is an array of the available food objects*/
 $foodOffer = array($pizza,$burrito,$salad,$curry);
 
-include 'header.php';
+include 'includes/header.php';
 ?>
 
 
@@ -88,5 +88,5 @@ include 'header.php';
 </form>
 
 <?php
-include 'footer.php';
+include 'includes/footer.php';
 

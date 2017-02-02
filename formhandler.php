@@ -1,6 +1,6 @@
 <?php
 require 'food.php';
-include 'header.php';
+include 'includes/header.php';
 echo '<pre>';
 echo var_dump($_POST);
 echo '</pre>';
@@ -28,4 +28,4 @@ echo '<pre>';
 echo var_dump($foodOrder);
 echo '</pre>';
 
-include 'footer.php';
+include 'includes/footer.php';

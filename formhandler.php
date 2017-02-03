@@ -5,6 +5,7 @@ include 'includes/header.php';
 //echo var_dump($_POST);
 //echo '</pre>';
 
+
 //loop through the $_POST array and create an array of Food objects the user ordered
 for ($i = 0; $i < count($_POST["items"]); $i++) {
 
@@ -35,7 +36,7 @@ foreach ($foodOrder as $food) {
     echo '<div class = "orderSummary menuItem col-md-6 col-md-offset-3">
               
               <h5 class="foodName">' . $food->name . '</h5>
-              <p class="foodName cost">$' . $food->CalculatePerItemSubtotal() . ' </p>
+              <!--<p class="foodName cost">$' . $food->CalculatePerItemSubtotal() . ' </p>-->
              
               <p>Base price:</p>
               <p class="cost">$' . $food->price . ' </p>
@@ -45,11 +46,16 @@ foreach ($foodOrder as $food) {
               <p class="cost">$' . $food->CalculateTax() . ' </p>
               <hr>
               <p>Subtotal:</p>
-              <p class="cost">$' . $food->CalculatePerItemSubtotal() . ' </p>
+              <p class="cost">$' . $food->CalculatePerItemSubtotal() . ' </p>             
               
-              </div>' ;
+        </div>';
+    //calculate total
+    $total += $food->CalculatePerItemSubtotal();
 }
 
-
+//display total
+echo '<div class = "orderSummary menuItem col-md-6 col-md-offset-3">
+    <h4 class="total">Total: ' . $total . '</h4>
+    </div>';
 
 include 'includes/footer.php';

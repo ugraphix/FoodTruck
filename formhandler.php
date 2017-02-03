@@ -9,14 +9,28 @@ include 'includes/header.php';
 /*
  * Error handling to prevent injection attacks
  * Error handling to resolve failure to select and item before summit
+ * feedback('Please select the item you want X number of.');
+ * send back to whatever page they came from
  */
-$chek = $_POST["items"];
-if(!isset($chek)){
+
+
+/*
+ * Provide feedback() function to communicate data issues with end user.
+ *
+ * @TODO add feedback functionality to communicate end user issue
+ */
+
+$chekQuantity = $_POST["quantity"][0];
+$chekType = $_POST["items"][0];
+
+if ((!isset($chekQuantity)) ||      #has value?   Value is not empty
+    (is_numeric($chekQuantity)) ||  #is int?      Value coming back is int
+    (!isset($chekType))             #has meaning? A food type has been selected
+)
+{
     #feedback('Please select the item you want X number of.');
-    #send back to whatever page they came from
     header( 'Location: index.php' ) ;
 }
-
 
 //loop through the $_POST array and create an array of Food objects the user ordered
 for ($i = 0; $i < count($_POST["items"]); $i++) {

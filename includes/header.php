@@ -17,4 +17,5 @@
 <div class="container">
     <h1 class="text-center">FoodTruck</h1>
     <h4 class="text-center slogan">Feeling hungry? We got you covered!</h4>
+    <div class="row">
 

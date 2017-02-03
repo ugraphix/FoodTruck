@@ -1,23 +1,23 @@
 <?php
 require "food.php";
-//we need to build the form dynamically, from existing objects
+//Building the form dynamically, from an array of objects
 
 //instantiate initial objects representing the types of food offered
-$pizza = new Food("Italian Pizza","Delicious taste of Italy,with fresh mozzarella and olive oil", 0,7,["Peppers", "Mushrooms", "Tomatoes", "Pesto"]);
-$burrito = new Food("Mexican Burrito","¡Ay, caramba! Straight from burrito heaven to your table", 0,5,["Cilantro", "Sour Cream", "Guacamole", "Salsa"]);
-$salad = new Food("Greek Salad","Fresh like a summer breeze over the Mediterranean",0,4.50, ["Olives", "Feta Cheese", "Oregano", "Onions"]);
-$curry = new Food("Indian Curry", "Spicy and rich vegetable curry, simply irresistible",0,7.25,["Hot Peppers", "Coconut Chutney", "Raita"]);
+$pizza = new Food("pizza");
+$burrito = new Food("burrito");
+$salad = new Food("salad");
+$curry = new Food("curry");
 
-//create an associative array of the food objects. The keys are used for the value property in the dropdown,
-// and for a class name in the additional toppings div. This class is needed for the JQuery to work
-$foodOffer = array("pizza" => $pizza, "burrito" => $burrito, "salad" => $salad, "curry" => $curry);
 
-include 'header.php';
+/** @var array $foodOffer is an array of the available food objects*/
+$foodOffer = array($pizza,$burrito,$salad,$curry);
+
+include 'includes/header.php';
 ?>
-<div class="row">
+
 
     <div class="col-sm-6">
-    <h3>Today's menu</h3>
+    <h3>Menu</h3>
     <?php
     //iterate through the array of food objects and populate the menu with data from the objects
     foreach ($foodOffer as $food)
@@ -33,14 +33,14 @@ include 'header.php';
     </div>
 <div id="template" class="hide">
     <div class="singleItem">
-        <select class="item" name="items[]">
+        <select class="item" name="items[]" required aria-required="true">
             <option value="" disabled selected>I want..</option>
             <?php
 
             //create the food select dropdown
-            foreach ($foodOffer as $key => $food)
+            foreach ($foodOffer as $food)
                 echo '
-              <option value="'.$key . '">' . $food->name . '</option>';
+              <option value="'.$food->type . '">' . $food->name . '</option>';
 
             ?>
 
@@ -52,16 +52,16 @@ include 'header.php';
 
         <?php
         //create the additional toppings
-        foreach ($foodOffer as $key => $food) {
+        foreach ($foodOffer as $food) {
 
 
-            $availableToppings = $food->toppings;
-//            echo var_dump($availableToppings);
+            $availableToppings = $food->extras;
+//           echo var_dump($availableToppings);
             if ($availableToppings) {
-                echo '<div class="hide toppings ' . $key . '">
+                echo '<div class="hide toppings ' . $food->type . '">
                           <p>Additional Toppings - $0.75 each</p>';
                 foreach ($availableToppings as $topping) {
-//                    echo var_dump($topping);
+//                   echo var_dump($topping);
 
                     echo '
                        <label><input type="checkbox" value="' . $topping . '">' . $topping . '</label>
@@ -78,6 +78,7 @@ include 'header.php';
 <form method="post" action="formhandler.php">
     <div id = "food" class="col-sm-6">
         <img src="images/foodtruck.jpg" alt="Image of FoodTruck" class="img-responsive center-block img-thumbnail">
+        <h4 class="text-center">What do you feel like eating today?</h4>
         <div class="form-group buttons">
             <input type="button" id="addItem" value="Add More">
             <input type="submit" value=" Place Order">
@@ -85,8 +86,7 @@ include 'header.php';
     </div>
 
 </form>
-</div>
-<script src="script.js">
-</script>
-</body>
-</html>
+
+<?php
+include 'includes/footer.php';
+

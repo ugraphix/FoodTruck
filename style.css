@@ -54,6 +54,8 @@ div.toppings {
     margin-bottom: 10px;
 }
 
+
+
 #food {
     border-left: 1px solid gainsboro;
 }
@@ -67,4 +69,20 @@ div.toppings {
 .price {
     display: inline;
     font-size: 1.1em;
+}
+
+
+
+.orderSummary p, .orderSummary h5{
+    display: inline-block;
+    width: 50%;
+}
+
+/*.orderSummary {*/
+    /*text-align: center;*/
+/*}*/
+
+p.cost {
+    width: 30%;
+    text-align: right;
 }

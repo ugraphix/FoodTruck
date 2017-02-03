@@ -6,6 +6,18 @@ include 'includes/header.php';
 //echo '</pre>';
 
 
+/*
+ * Error handling to prevent injection attacks
+ * Error handling to resolve failure to select and item before summit
+ */
+$chek = $_POST["items"];
+if(!isset($chek)){
+    #feedback('Please select the item you want X number of.');
+    #send back to whatever page they came from
+    header( 'Location: index.php' ) ;
+}
+
+
 //loop through the $_POST array and create an array of Food objects the user ordered
 for ($i = 0; $i < count($_POST["items"]); $i++) {
 

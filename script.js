@@ -70,7 +70,7 @@ function showTopping(el){
 }
 function setToppingNames(){
   $('#food .singleItem').each(function(index, currentItem){
-     $(currentItem).find('input:checked').each(function(toppingIemIndex, toppingItem){
+     $(currentItem).find('input:checked').each(function(toppingItemIndex, toppingItem){
          $(toppingItem).attr('name', 'topping' + index + '[]');
      });
   });

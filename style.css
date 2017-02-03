@@ -88,5 +88,19 @@ p.cost {
 }
 
 .total {
-    color: crimson;
+    color: #eee;
 }
+
+button.details {
+    float:right;
+    background-color: #ccc;
+}
+
+.details i {
+    color: white;
+}
+
+#finalPrice {
+  background-color: #87cbd4;
+}
+

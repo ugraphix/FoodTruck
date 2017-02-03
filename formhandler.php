@@ -32,17 +32,18 @@ for ($i = 0; $i < count($_POST["items"]); $i++) {
 
 //create the order summary showing all the items and toppings ordered,
 //the subtotal for each item, and a cumulative total cost due.
-
+$total = 0;
 foreach ($foodOrder as $food) {
     echo '<div class = "orderSummary menuItem col-md-6 col-md-offset-3">
               
-              <h5 class="foodName">' . $food->name . '</h5>
-              <!--<p class="foodName cost">$' . $food->CalculatePerItemSubtotal() . ' </p>-->
-              <p class="foodName cost">' . $food->quantity . ' Orders </p>
-              <p>Base price:</p>
-              <p class="cost">$' . $food->CalculateBasePrice() . ' (' . $food->price . ' /each)</p>
-              <p>+' . implode(", ", $food->toppings) . ' </p>
-              <p class="cost">$' . $food->CalculateToppingsCostTotal() . ' (' . $food->CalculateToppingsCost() . ' /each) </p>
+              <h5 class="foodName">' . $food->name . ' x ' . $food->quantity . '</h5>
+              <p class="foodName cost">$' . $food->CalculatePerItemSubtotal() . ' </p>
+              <button type="button" class="btn btn-info">+</button>
+             <div class = "priceDetails" >
+              <p>Base price:(' . $food->price . ' /each)</p>
+              <p class="cost">$' . $food->CalculateBasePrice() . ' </p>
+              <p>+' . implode(", ", $food->toppings) . '(' . $food->CalculateToppingsCost() . ' /each) </p>
+              <p class="cost">$' . $food->CalculateToppingsCostTotal() . '  </p>
               
 <!-- added by Ayumi 2/3-->
               <!-- <p>Subtotal before tax (' . $food->quantity . ' orders): </p>
@@ -53,15 +54,17 @@ foreach ($foodOrder as $food) {
               <hr>
               <p>Subtotal:</p>
               <p class="cost">$' . $food->CalculatePerItemSubtotal() . ' </p>             
-              
+              </div>
         </div>';
     //calculate total
+
     $total += $food->CalculatePerItemSubtotal();
 }
-//display total
 
+//display total
 echo '<div class = "orderSummary menuItem col-md-6 col-md-offset-3">
-    <h4 class="total">Total: ' . $total . '</h4>
+    <h5 class="total">Total:</h5>
+    <p class="total cost">$' . number_format($total, 2) . ' </p>
     </div>';
 
 include 'includes/footer.php';

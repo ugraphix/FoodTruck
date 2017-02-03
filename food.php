@@ -70,7 +70,13 @@ class Food
             break;
     }
 }
-
+    /**
+    *Calculate the base price for the number of the items ordered
+    */
+    public function CalculateBasePrice(){
+        $basePrice = $this->price * $this->quantity;
+        return number_format($basePrice, 2);
+    }
     /**
      * Calculates the cost of the added toppings
      * Counts the number of toppings selected and multiplies it by the base toppings fee
@@ -81,9 +87,25 @@ class Food
         $toppingsCost = count($this->toppings) * self::$TOPPINGS_FEE;
         return number_format($toppingsCost, 2);
     }
+    
+    public function CalculateToppingsCostTotal(){
+        $toppingsCostTotal = $this->CalculateToppingsCost() * $this->quantity;
+        return number_format($toppingsCostTotal, 2);
+    }
 
+    /**
+    *Calculates the total of each item price with toppings before tax. This takes quantity into consideration Ayumi
+    */
+    
+    public function CalculateSubtotalBeforeTax() {
+        $subtotalBT = ($this->price + $this->CalculateToppingsCost())* $this->quantity;
+        return number_format($subtotalBT, 2);
+    }
+        
+        
     public function CalculateTax() {
-        $taxTotal = ($this->price + $this->CalculateToppingsCost()) * self::$TAX;
+        //$taxTotal = ($this->price + $this->CalculateToppingsCost()) * self::$TAX;
+        $taxTotal = $this->CalculateSubtotalBeforeTax() * self::$TAX;
         return number_format($taxTotal, 2);
     }
 
@@ -94,11 +116,13 @@ class Food
      */
     public function CalculatePerItemSubtotal(){
         //@todo implement method
-        $subtotal = ($this->price  + $this->CalculateToppingsCost())  * (self::$TAX + 1);
+        //$subtotal = ($this->price  + $this->CalculateToppingsCost())  * (self::$TAX + 1);
+        $subtotal = $this->CalculateSubtotalBeforeTax()  * (self::$TAX + 1);
+        
         return number_format($subtotal, 2);
     }
 
-
+    
 
 
 

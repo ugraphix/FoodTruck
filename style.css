@@ -60,7 +60,7 @@ div.toppings {
     border-left: 1px solid gainsboro;
 }
 
-.foodName {
+.foodName , .total {
     color: #00a1a0;
     font-size: 1.2em;
     display: inline;
@@ -85,4 +85,8 @@ div.toppings {
 p.cost {
     width: 30%;
     text-align: right;
+}
+
+.total {
+    color: crimson;
 }

@@ -1,9 +1,11 @@
 <?php
+
 require 'food.php';
 include 'includes/header.php';
 //echo '<pre>';
 //echo var_dump($_POST);
 //echo '</pre>';
+
 
 //loop through the $_POST array and create an array of Food objects the user ordered
 for ($i = 0; $i < count($_POST["items"]); $i++) {
@@ -30,13 +32,14 @@ for ($i = 0; $i < count($_POST["items"]); $i++) {
 
 //create the order summary showing all the items and toppings ordered,
 //the subtotal for each item, and a cumulative total cost due.
-
+$total = 0;
 foreach ($foodOrder as $food) {
     echo '<div class = "orderSummary menuItem col-md-6 col-md-offset-3">
               
-              <h5 class="foodName">' . $food->name . '</h5>
+              <h5 class="foodName">' . $food->name . ' x ' . $food->quantity . '</h5>
               <p class="foodName cost">$' . $food->CalculatePerItemSubtotal() . ' </p>
-             
+              <button type="button" class="btn btn-info">+</button>
+             <div class = "priceDetails" >
               <p>Base price:</p>
               <p class="cost">$' . $food->price . ' </p>
               <p>+' . implode(", ", $food->toppings) . ' </p>
@@ -44,12 +47,19 @@ foreach ($foodOrder as $food) {
               <p>Tax (9.6%)</p>
               <p class="cost">$' . $food->CalculateTax() . ' </p>
               <hr>
-              <p>Subtotal:</p>
-              <p class="cost">$' . $food->CalculatePerItemSubtotal() . ' </p>
-              
-              </div>' ;
+              <p>Per item cost:</p>
+              <p class="cost">$' . $food->CalculatePerItemSubtotal() . ' </p>             
+              </div>
+        </div>';
+    //calculate total
+
+    $total += $food->CalculatePerItemSubtotal();
 }
 
-
+//display total
+echo '<div class = "orderSummary menuItem col-md-6 col-md-offset-3">
+    <h5 class="total">Total:</h5>
+    <p class="total cost">$' . $total . ' </p>
+    </div>';
 
 include 'includes/footer.php';

@@ -4,7 +4,14 @@ include 'includes/header.php';
 //echo '<pre>';
 //echo var_dump($_POST);
 //echo '</pre>';
-
+//check if the input is valid
+if(!isset($_POST["items"])) {
+    echo '<div class = "col-md-4 col-md-offset-4">
+              
+              <h5 class="errorMsg">Undecided what you want to order? We suggest you order one of each!</h5>
+       <a href = "index.php">Take me back</a>';
+}
+else {
 
 /*
  * Error handling to prevent injection attacks
@@ -79,9 +86,17 @@ foreach ($foodOrder as $food) {
               <button type="button" class="btn details"><i class="fa fa-chevron-down"></i></button>
              <div class = "priceDetails hide" >
               <p>Base price:(' . $food->price . ' /each)</p>
-              <p class="cost">$' . $food->CalculateBasePrice() . ' </p>
+              <p class="cost">$' . $food->CalculateBasePrice() . ' </p>';
+
+    //don't display toppings price if no toppings were selected
+
+    if($toppings != []) {
+        echo '
               <p>+' . implode(", ", $food->toppings) . '(' . $food->CalculateToppingsCost() . ' /each) </p>
-              <p class="cost">$' . $food->CalculateToppingsCostTotal() . '  </p>
+              <p class="cost">$' . $food->CalculateToppingsCostTotal() . '  </p>';
+    }
+
+    echo '
               
 <!-- added by Ayumi 2/3-->
               <!-- <p>Subtotal before tax (' . $food->quantity . ' orders): </p>
@@ -104,5 +119,5 @@ echo '<div id="finalPrice" class = "orderSummary menuItem col-md-6 col-md-offset
     <h5 class="total">Total price:</h5>
     <p class="total cost">$' . number_format($total, 2) . ' </p>
     </div>';
-
+}
 include 'includes/footer.php';

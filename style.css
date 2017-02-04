@@ -111,3 +111,18 @@ button.details {
   background-color: #87cbd4;
 }
 
+.errorMsg {
+    text-align: center;
+    color: #00bcd4;
+}
+
+a {
+    text-align: center;
+    border: 1px solid gainsboro;
+    padding: 2px;
+    display: block;
+    margin-bottom: 20px;
+    color: black;
+    background-color: #ddd;
+    text-decoration: none;
+}

@@ -19,19 +19,26 @@ include 'includes/header.php';
  *
  * @TODO add feedback functionality to communicate end user issue
  */
+/*
+ * if(!isset($_POST['YourName']) || $_POST['YourName'] == '')
+	{//data must be sent
+		feedback("No form data submitted"); #will feedback to submitting page via session variable
+		myRedirect(THIS_PAGE);
+	}
+*/
 
 
 $chekQuantity = $_POST["quantity"][0];
 $chekType = $_POST["items"][0];
-
-
 #has value?   Value is not empty
 #has meaning? A food type has been selected
-if ( (!isset($chekQuantity)) || (!isset($chekType)))
+if ( (!isset($chekQuantity)) || ($chekQuantity  == '' ) ||
+     (!isset($chekType))     || ($chekType  == '' ))
 {
 
 // session started in header
 // if value empty will replace slogan with warning to user
+// feedback to submitting page via session variable
     $_SESSION['feedback'] = "We&rsquo;re Sorry, we could not process your order.<br />Please check your order and try again.";
     header( 'Location: index.php' ) ;
 }

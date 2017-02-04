@@ -63,7 +63,7 @@ include 'includes/header.php';
 //                   echo var_dump($topping);
 
                     echo '
-                       <label><input type="checkbox" value="' . $topping . '">' . $topping . '</label>
+                       <label><input type="checkbox" value="' . $topping . '"> &nbsp;' . $topping . '</label>
                        ';
                 }
                 echo '</div>';

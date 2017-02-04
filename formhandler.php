@@ -1,9 +1,9 @@
 <?php
 require 'food.php';
 include 'includes/header.php';
-echo '<pre>';
-    echo var_dump($_POST);
-echo '</pre>';
+//echo '<pre>';
+//echo var_dump($_POST);
+//echo '</pre>';
 
 
 /*
@@ -24,19 +24,10 @@ echo '</pre>';
 $chekQuantity = $_POST["quantity"][0];
 $chekType = $_POST["items"][0];
 
-/*
-((!isset($chekQuantity)) ||      #has value?   Value is not empty
-    (is_numeric($chekQuantity)) ||  #is int?      Value coming back is int
-    (!isset($chekType))             #has meaning? A food type has been selected
-)
-*/
 
-if (
-    ((!isset($chekQuantity)) ||      #has value?   Value is not empty
-
-    (!isset($chekType))             #has meaning? A food type has been selected
-)
-)
+#has value?   Value is not empty
+#has meaning? A food type has been selected
+if ( (!isset($chekQuantity)) || (!isset($chekType)))
 {
 
 // session started in header

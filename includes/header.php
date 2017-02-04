@@ -23,11 +23,20 @@
     <h1 class="text-center">FoodTruck</h1>
 
     <?php
+    #If value empty, display appropriate error
+    echo '
+    <script type="text/javascript" src="./includes/errorHandling.js"></script>
+	<script type="text/javascript">
+		function checkForm(thisForm)
+		{//check form data for valid info
+			if(empty(thisForm.items[],"Please Select An Item")){return false;}
+			if(empty(thisForm.quantity[],"Please Select An Item")){return false;}
+			return true;//if all is passed, submit!
+		}
+	</script>
+	';
 
     #var_dump($_SESSION);
-
-
-
     // if feedback = '', show slogan
     if(isset($_SESSION['feedback'])){
         echo '<h4 class="text-center slogan">Feeling hungry? We got you covered!</h4>';
@@ -35,9 +44,6 @@
         //if feedback = something, show warning.
         echo '<h4 class="text-center slogan feedback">' . $_SESSION['feedback'] . '</h4>';
     }
-
-    echo '';
-
     ?>
 
 

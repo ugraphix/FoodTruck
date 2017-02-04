@@ -4,6 +4,23 @@
 $(document).ready(function () {
     addItem();
 
+    $('button').click(function () {
+        //get which button was clicked
+        var buttonClicked = $(this);
+        //target the div below the clicked button
+        var details = buttonClicked.next();
+        details.toggleClass("hide");
+
+        //toggle the icon
+        var icon = $(this).children("i");
+        if(icon.hasClass('fa-chevron-down')){
+            icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
+        }else {
+            icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
+        }
+
+    });
+
     $('form').submit( function(){
         setToppingNames();
     });
@@ -74,4 +91,9 @@ function setToppingNames(){
          $(toppingItem).attr('name', 'topping' + index + '[]');
      });
   });
+
+  function showPriceDetails(el) {
+      $(el).toggle(".priceDetails");
+  }
+
 }

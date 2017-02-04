@@ -76,8 +76,8 @@ foreach ($foodOrder as $food) {
               
               <h5 class="foodName">' . $food->name . ' x ' . $food->quantity . '</h5>
               <p class="foodName cost">$' . $food->CalculatePerItemSubtotal() . ' </p>
-              <button type="button" class="btn btn-info">+</button>
-             <div class = "priceDetails" >
+              <button type="button" class="btn details"><i class="fa fa-chevron-down"></i></button>
+             <div class = "priceDetails hide" >
               <p>Base price:(' . $food->price . ' /each)</p>
               <p class="cost">$' . $food->CalculateBasePrice() . ' </p>
               <p>+' . implode(", ", $food->toppings) . '(' . $food->CalculateToppingsCost() . ' /each) </p>
@@ -100,8 +100,8 @@ foreach ($foodOrder as $food) {
 }
 
 //display total
-echo '<div class = "orderSummary menuItem col-md-6 col-md-offset-3">
-    <h5 class="total">Total:</h5>
+echo '<div id="finalPrice" class = "orderSummary menuItem col-md-6 col-md-offset-3">
+    <h5 class="total">Total price:</h5>
     <p class="total cost">$' . number_format($total, 2) . ' </p>
     </div>';
 

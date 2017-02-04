@@ -1,7 +1,4 @@
 <?php
-
-
-
 require "food.php";
 //Building the form dynamically, from an array of objects
 
@@ -44,7 +41,6 @@ include 'includes/header.php';
             foreach ($foodOffer as $food)
                 echo '
               <option value="'.$food->type . '">' . $food->name . '</option>';
-
             ?>
 
         </select>
@@ -67,8 +63,7 @@ include 'includes/header.php';
 //                   echo var_dump($topping);
 
                     echo '
-                       <label><input type="checkbox" value="' . $topping . '">' . $topping . '</label>
-                       
+                       <label><input type="checkbox" value="' . $topping . '"> &nbsp;' . $topping . '</label>
                        ';
                 }
                 echo '</div>';

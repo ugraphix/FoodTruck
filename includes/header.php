@@ -1,8 +1,3 @@
-<?php
-    #to handle session data -- for form postback
-    session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,30 +17,18 @@
 <body>
 <div class="container">
     <h1 class="text-center">FoodTruck</h1>
+    <h4 class="text-center slogan">Feeling hungry? We got you covered!</h4>
 
-    <?php
-    #If value empty, display appropriate error
-    echo '
-    <script type="text/javascript" src="./includes/errorHandling.js"></script>
-	<script type="text/javascript">
-		function checkForm(thisForm)
-		{//check form data for valid info
-			if(empty(thisForm.items[],"Please Select An Item")){return false;}
-			if(empty(thisForm.quantity[],"Please Select An Item")){return false;}
-			return true;//if all is passed, submit!
-		}
-	</script>
-	';
+<?php
+    // check query string for alert notice
+    $chek = $_GET['act'];
 
-    #var_dump($_SESSION);
-    // if feedback = '', show slogan
-    if(isset($_SESSION['feedback'])){
-        echo '<h4 class="text-center slogan">Feeling hungry? We got you covered!</h4>';
-    }else{
-        //if feedback = something, show warning.
-        echo '<h4 class="text-center slogan feedback">' . $_SESSION['feedback'] . '</h4>';
+    //if alert, display notice
+    if (isset($chek)){
+        echo '<script>alert("OH NO - Something is amiss with your order, please resubmit. Thank you.")</script>';
     }
-    ?>
+?>
+
 
 
     <div class="row">

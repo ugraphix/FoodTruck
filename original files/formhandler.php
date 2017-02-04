@@ -5,26 +5,51 @@ include 'includes/header.php';
 //echo var_dump($_POST);
 //echo '</pre>';
 //check if the input is valid
-
-
-/*
 if(!isset($_POST["items"])) {
     echo '<div class = "col-md-4 col-md-offset-4">
-
+              
               <h5 class="errorMsg">Undecided what you want to order? We suggest you order one of each!</h5>
        <a href = "index.php">Take me back</a>';
 }
+else {
+
+/*
+ * Error handling to prevent injection attacks
+ * Error handling to resolve failure to select and item before summit
+ * feedback('Please select the item you want X number of.');
+ * send back to whatever page they came from
+ */
+
+
+/*
+ * Provide feedback() function to communicate data issues with end user.
+ *
+ * @TODO add feedback functionality to communicate end user issue
+ */
+/*
+ * if(!isset($_POST['YourName']) || $_POST['YourName'] == '')
+	{//data must be sent
+		feedback("No form data submitted"); #will feedback to submitting page via session variable
+		myRedirect(THIS_PAGE);
+	}
 */
 
 
-//if the input is valid - if not send back to start
-// If user has to click 'back' they might be annoyed, best practice is redirect automatically, then inform.
-// see
-if(!isset($_POST["items"])) {
-    //send user back if empty
-    header('Location: index.php?act=error');
+$chekQuantity = $_POST["quantity"][0];
+$chekType = $_POST["items"][0];
+#has value?   Value is not empty
+#has meaning? A food type has been selected
+if ( (!isset($chekQuantity)) || ($chekQuantity  == '' ) ||
+     (!isset($chekType))     || ($chekType  == '' ))
+{
+
+// session started in header
+// if value empty will replace slogan with warning to user
+// feedback to submitting page via session variable
+    $_SESSION['feedback'] = "We&rsquo;re Sorry, we could not process your order.<br />Please check your order and try again.";
+    header( 'Location: index.php' ) ;
 }
-else {
+
 
 //loop through the $_POST array and create an array of Food objects the user ordered
 for ($i = 0; $i < count($_POST["items"]); $i++) {

@@ -1,3 +1,8 @@
+<?php
+    #to handle session data -- for form postback
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +21,25 @@
 <body>
 <div class="container">
     <h1 class="text-center">FoodTruck</h1>
-    <h4 class="text-center slogan">Feeling hungry? We got you covered!</h4>
+
+    <?php
+
+    #var_dump($_SESSION);
+
+
+
+    // if feedback = '', show slogan
+    if(isset($_SESSION['feedback'])){
+        echo '<h4 class="text-center slogan">Feeling hungry? We got you covered!</h4>';
+    }else{
+        //if feedback = something, show warning.
+        echo '<h4 class="text-center slogan feedback">' . $_SESSION['feedback'] . '</h4>';
+    }
+
+    echo '';
+
+    ?>
+
+
     <div class="row">
 

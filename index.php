@@ -41,7 +41,6 @@ include 'includes/header.php';
             foreach ($foodOffer as $food)
                 echo '
               <option value="'.$food->type . '">' . $food->name . '</option>';
-
             ?>
 
         </select>
@@ -65,7 +64,6 @@ include 'includes/header.php';
 
                     echo '
                        <label><input type="checkbox" value="' . $topping . '">' . $topping . '</label>
-                       
                        ';
                 }
                 echo '</div>';

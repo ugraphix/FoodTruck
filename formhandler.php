@@ -1,9 +1,9 @@
 <?php
 require 'food.php';
 include 'includes/header.php';
-//echo '<pre>';
-//echo var_dump($_POST);
-//echo '</pre>';
+echo '<pre>';
+    echo var_dump($_POST);
+echo '</pre>';
 
 
 /*
@@ -20,17 +20,31 @@ include 'includes/header.php';
  * @TODO add feedback functionality to communicate end user issue
  */
 
+
 $chekQuantity = $_POST["quantity"][0];
 $chekType = $_POST["items"][0];
 
-if ((!isset($chekQuantity)) ||      #has value?   Value is not empty
+/*
+((!isset($chekQuantity)) ||      #has value?   Value is not empty
     (is_numeric($chekQuantity)) ||  #is int?      Value coming back is int
     (!isset($chekType))             #has meaning? A food type has been selected
 )
+*/
+
+if (
+    ((!isset($chekQuantity)) ||      #has value?   Value is not empty
+
+    (!isset($chekType))             #has meaning? A food type has been selected
+)
+)
 {
-    #feedback('Please select the item you want X number of.');
+
+// session started in header
+// if value empty will replace slogan with warning to user
+    $_SESSION['feedback'] = "We&rsquo;re Sorry, we could not process your order.<br />Please check your order and try again.";
     header( 'Location: index.php' ) ;
 }
+
 
 //loop through the $_POST array and create an array of Food objects the user ordered
 for ($i = 0; $i < count($_POST["items"]); $i++) {

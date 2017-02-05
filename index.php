@@ -1,4 +1,21 @@
 <?php
+/**
+ * index.php generates the initial page the user sees when using this app.
+ * It uses the class file food.php to instantiate the food objects that store the data for the menu:
+ * The food names, description and price.
+ *
+ * In addition, this page contains a form that has:
+ *      dropdown selection of the available food items;
+ *      number input field for the quantity
+ *      button to add more items
+ *      button to submit the order
+ *
+ * Invalid input(no values) is prevented by HTML required tags,
+ * and by checking the input upon submission,
+ * notifying the user the selection was invalid and providing the option to go back.
+ *
+ */
+
 require "food.php";
 //Building the form dynamically, from an array of objects
 

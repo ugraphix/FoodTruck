@@ -1,9 +1,15 @@
 <?php
+/**
+ * formhandler.php checks if the user input was valid,
+ * stores the user data into an array of Food objects, calls the calculation methods
+ * and displays the order summary, subtotal(per item) price
+ * (with detailed price breakdown the user can see if they click a button),
+ * as well as the total price for the order.
+ *
+ */
 require 'food.php';
 include 'includes/header.php';
-//echo '<pre>';
-//echo var_dump($_POST);
-//echo '</pre>';
+
 //check if the input is valid
 if(!isset($_POST["items"])) {
     echo '<div class = "col-md-4 col-md-offset-4">
@@ -31,11 +37,6 @@ for ($i = 0; $i < count($_POST["items"]); $i++) {
     $foodOrder[] = new Food($type, $quantity, $toppings);
 
 }
-
-
-//echo '<pre>';
-//echo var_dump($foodOrder);
-//echo '</pre>';
 
 //create the order summary showing all the items and toppings ordered,
 //the subtotal for each item, and a cumulative total cost due.

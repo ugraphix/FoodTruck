@@ -1,10 +1,25 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Ekogoca
- * Date: 01/31/2017
- * Time: 6:04 PM
+ * Class Food stores the data relevant for a food item:
+ *
+ * Public fields:
+ * type - short name that describes the general food type (pizza, burrito etc.)
+ * name - a descriptive name that appears on the menu (Italian Pizza, Mexican Burrito etc.)
+ * description - short explanation about the food item, enlisting the ingredients
+ * price - the food base price, without extras or tax
+ * quantity -  the number of food items ordered
+ * toppings - user selected additions from the list of
+ * extras - available topping choices a user can select from. The extras are food type specific.
+ *
+ * Class level variables:
+ * tax - the decimal amount of sales tax
+ * toppings_fee - all toppings have the same per topping fee.
+ *
+ * In addition to these fields, the class has a custom constructor,
+ * one private method SetProperties() (used by the constructor), and
+ * several public methods used for price calculations.
+ *
  */
 class Food
 {
@@ -23,7 +38,16 @@ class Food
     private static $TOPPINGS_FEE = 0.75;
 
     //constructor
-    public function __construct($type,$quantity = 0,$toppings = array())
+    /**
+     * Food constructor.
+     * @param $type
+     * @param int $quantity
+     * @param array $toppings
+     *
+     * The constructor calls the SetProperties() method that sets the properties' values
+     * dependent on the food type
+     */
+    public function __construct($type, $quantity = 0, $toppings = array())
     {
         $this->type = $type;
         $this->quantity = $quantity;
@@ -34,7 +58,7 @@ class Food
     //methods
 
     /**
-     *Sets the name, description, price and extras fields based on the food type
+     *Sets the name, description, price and extras fields based on the food type.
      */
     private function SetProperties(){
     switch ($this->type) {
@@ -71,7 +95,8 @@ class Food
     }
 }
     /**
-    *Calculate the base price for the number of the items ordered
+     * Calculates the base price for the number of the items ordered
+     * @return string $basePrice formatted to two decimal places
     */
     public function CalculateBasePrice(){
         $basePrice = $this->price * $this->quantity;
@@ -80,29 +105,38 @@ class Food
     /**
      * Calculates the cost of the added toppings
      * Counts the number of toppings selected and multiplies it by the base toppings fee
-     * of 0.75 dollars per topping
      * @return string $toppingsCost formatted to two decimal places
      */
     public function CalculateToppingsCost(){
         $toppingsCost = count($this->toppings) * self::$TOPPINGS_FEE;
         return number_format($toppingsCost, 2);
     }
-    
+
+    /**
+     * Calculates the total cost of all the selected toppings
+     * @return string formatted to two decimal places
+     */
     public function CalculateToppingsCostTotal(){
         $toppingsCostTotal = $this->CalculateToppingsCost() * $this->quantity;
         return number_format($toppingsCostTotal, 2);
     }
 
     /**
-    *Calculates the total of each item price with toppings before tax. This takes quantity into consideration Ayumi
+    *Calculates the total of each item price with toppings before tax.
+     * This takes quantity into consideration
+     * @return string formatted to two decimal places
     */
     
     public function CalculateSubtotalBeforeTax() {
         $subtotalBT = ($this->price + $this->CalculateToppingsCost())* $this->quantity;
         return number_format($subtotalBT, 2);
     }
-        
-        
+
+
+    /**
+     * Calculates the price of the food item with tax
+     * @return string formatted to two decimal places
+     */
     public function CalculateTax() {
         //$taxTotal = ($this->price + $this->CalculateToppingsCost()) * self::$TAX;
         $taxTotal = $this->CalculateSubtotalBeforeTax() * self::$TAX;
